@@ -1,3 +1,5 @@
+@Library('utils@notify-fix') _
+
 // Obtain files from source control system.
 // [skip ci] and [ci skip] have no effect here.
 if (utils.scm_checkout(['skip_disable':true])) return
@@ -15,7 +17,14 @@ bc1.env_vars = ['TEST_BIGDATA=https://bytesalad.stsci.edu/artifactory']
 bc1.conda_channels = ['http://ssb.stsci.edu/astroconda']
 bc1.conda_packages = ['python=3.6', 'pytest=3.8', 'requests', 'numpy', 'astropy']
 bc1.build_cmds = ["python setup.py install"]
-bc1.test_cmds = ["pytest tests --slow --bigdata --env=stable --basetemp=tests_output --junitxml results.xml"]
+
+
+//bc1.test_cmds = ["pytest tests --slow --bigdata --env=stable --basetemp=tests_output --junitxml results.xml"]
+
+bc1.test_cmds = [["pytest tests --slow --bigdata --env=stable --basetemp=tests_output --junitxml results.xml", 'ignore_status'],
+                 "ls -al"]
+
+
 bc1.failedUnstableThresh = 1
 bc1.failedFailureThresh = 6
 
