@@ -1,4 +1,4 @@
-@Library('utils@refactor-test') _
+@Library('utils@refactor') _
 
 // Obtain files from source control system.
 // [skip ci] and [ci skip] have no effect here.
