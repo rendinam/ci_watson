@@ -1,4 +1,4 @@
-@Library('utils@clonedir') _
+@Library('utils@subdir') _
 
 // Obtain files from source control system.
 // [skip ci] and [ci skip] have no effect here.
